@@ -50,11 +50,11 @@ $(document).ready(function () {
             '<button class="bn49" id="edit-btn">Upravit vybrané</button>' +
             '<a class="bn49" href="#" id="link">Přidání Firmy</a>' +
 			' <div id="myLinks"><label>Aktivní:<input type="checkbox" id="check-active" checked></label>' +
-            
-            
+
+
             '<button class="bn49" id="delete-btn">Vymazat vybrané</button>' +
             '<button class="bn49" id="export-btn">Exportovat vybrané</button>' +
-            
+
 			'<a class="bn49 " href="/columns/columnForm.php">Úpravy sloupců</a>' +
             '<a class="bn49 " href="/events/tableEvents.php">Události</a>' +
             '<button class="bn49" id="edit-rows">Hromadná změna sloupce</button>' +
@@ -96,6 +96,7 @@ $(document).ready(function () {
         } else {
             Setcookie(value);
             if (window.history.replaceState) {
+
               //  window.history.replaceState("", "CRM", window.location.origin + "table.php?search=" + value);
             }
         }

@@ -81,7 +81,7 @@ $(document).ready(function () {
             '<div class="table-filter">' +
             '<button class="bn49" id="edit-btn">Upravit vybrané</button>' +
             '<a class="bn49" href="#" id="link">Přidání Firmy</a>' +
-			' <div id="myLinks"><label>Aktivní:<input type="checkbox" id="check-active" checked></label>' +
+			' <div class="menu-items" id="myLinks"><label>Aktivní:<input type="checkbox" id="check-active" checked></label>' +
             
             
             '<button class="bn49" id="delete-btn">Odstranit vybrané</button>' +

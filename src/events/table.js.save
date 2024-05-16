@@ -37,29 +37,62 @@ $(document).ready( function () {
 
 
 function Setcookie(value) {
-        const d = new Date();
-        d.setTime(d.getTime() + (0.5 * 24 * 60 * 60 * 1000));
-        let expires = "expires=" + d.toUTCString();
-        document.cookie = "search=" + value + ";" +expires;
-  }
+        //const d = new Date();
+    const pastDate = new Date(); // Set a date in the past
+    let expires = "expires=" + pastDate.toUTCString();
+    //document.cookie = "search=; " + expires; // Set the cookie with an expiration time in the past
+
+        //d.setTime(d.getTime() + (0.5 * 24 * 60 * 60 * 1000));
+        //let expires = "expires=" + d.toUTCString();
+        document.cookie = "search=" + value + ";" + expires;
+if (IsCookieExpired('search')) {
+    console.log('Cookie is expired.');
+	
+} else {
+    console.log('Cookie is not expired.');
+}
+
+    }
+
+function IsCookieExpired(cookieName) {
+    // Get all cookies
+    const cookies = document.cookie.split(';');
+
+    // Iterate through cookies to find the one with the specified name
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        // Check if the cookie starts with the specified name
+        if (cookie.startsWith(cookieName + '=')) {
+            // Get the value of the cookie
+            let cookieValue = cookie.substring(cookieName.length + 1);
+            // If the value is empty, the cookie is expired
+            if (cookieValue === '') {
+                return true;
+            } else {
+                return false; // If the value is not empty, the cookie is not expired
+            }
+        }
+    }
+    // If the cookie with the specified name is not found, it is considered expired
+    return true;
+}
 
 
     var serachInput = $("#basic_filter label input");
     serachInput.keyup(function(){
         var value = serachInput.val();
-        //const d = new Date(0);
-        //d.setTime(d.getTime() + (0.5*24*60*60*1000));
-        //let expires = "expires="+ d.toUTCString();
-        setCookie(value);
-//      document.cookie = "search="+ value; + ";" + expires;
-   /*     if (window.history.replaceState) {
-       //     window.history.replaceState("", "CRM", window.location.origin+ "?search="+ value);
-}*/
+        const d = new Date();
+        d.setTime(d.getTime() + (0.5*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = "search="+ value+ ";"+ expires;
+        if (window.history.replaceState) {
+            window.history.replaceState("", "CRM", window.location.origin+ "?search="+ value);
+         }
     });
 
-
     
- $(".dataTables_length").append($('<div class="table-filter"><button id="delete-btn">Smazat vybrané</button>'+
+
+    $(".dataTables_length").append($('<div class="table-filter"><button id="delete-btn">Smazat vybrané</button>'+
      ' <a class="bn49" href="addEventForm.php">Přidání události</a><a class="bn49 zpet" href="/">Zpět na firmy</a> </div>'));
 
     $("#delete-btn").click(function(){
@@ -152,3 +185,5 @@ function Setcookie(value) {
     })
         
 } );
+
+
